@@ -6,6 +6,19 @@
 }
 
 :root {
+  --spacing: 1px;
+  --background: #ffffff;
+  --foreground: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff;
+    --foreground: #ededed;
+  }
+}
+/* :root {
+  --spacing: 1px;
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -15,10 +28,41 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  min-height: 100vh;
+  background-image: url("../../public/바탕화면.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-y: hidden;
 }
+
+h1 {
+  font-size: 30px;
+}
+h2 {
+  font-size: 25px;
+}
+h3 {
+  font-size: 15px;
+}
+p {
+  font-size: 13px;
+}
+
+/* .fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} */
