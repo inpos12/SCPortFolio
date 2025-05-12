@@ -12,15 +12,8 @@ type StateType = {
   widths: boolean | null;
   zindex: boolean | null;
 };
-type OwnType = {
-  StateResize: Boolean;
-  StateMinimize: boolean;
-  SideBarState: boolean;
-  SideBarHandler: () => void;
-  TabletWidthState: string;
-  TabletWidthsState: string;
-};
-const Home: React.FC<OwnType> = () => {
+
+const Home = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [SideBar, setSideBar] = useState(true);
   const [tabletState, setTabletState] = useState<StateType>({
