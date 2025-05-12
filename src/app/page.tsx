@@ -16,7 +16,7 @@ type OwnType = {
   StateResize: Boolean;
   StateMinimize: boolean;
   SideBarState: boolean;
-  SideBarHandler: boolean;
+  SideBarHandler: () => void;
   TabletWidthState: string;
   TabletWidthsState: string;
 };
