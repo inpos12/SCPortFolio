@@ -21,7 +21,7 @@ export const ReadmeContent: React.FC = () => {
           alt="Image description"
           style={{ width: "auto", height: "auto" }}
         />
-        <Heading1 className="mt-10 mb-20">Seung Chan's Portfolio</Heading1>
+        <Heading1 className="mt-10 mb-20">Seung Chan&apos;s Portfolio</Heading1>
         <Hr />
         <Heading2 className="mb-20">AboutMe</Heading2>
         <SubText
