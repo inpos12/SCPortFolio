@@ -4,6 +4,7 @@ if (!uri) {
   throw new Error("MongoDB URI is not defined");
 }
 export const client = new MongoClient(uri, {
+  maxPoolSize: 200, // 👈 원하는 커넥션 풀 크기 설정
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,

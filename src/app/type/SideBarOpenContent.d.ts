@@ -3,4 +3,5 @@ export type SideBarOpenContentType = {
   State: string;
   TabletWidthState: boolean | null;
   TabletWidthsState: boolean | null;
+  TopBarUlzindex: boolean;
 };

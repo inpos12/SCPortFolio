@@ -3,8 +3,8 @@ import { Style } from "@/app/type/style";
 // Types
 import { SideBarOpenContentType } from "@/app/type/SideBarOpenContent";
 // Styles
-import { Row } from "../../common/CommonStyles";
-import { Ul, Li } from "../VisualStudio.styles";
+import { ButtonText, Row } from "../../common/CommonStyles";
+import { Ul, Li, Button } from "../VisualStudio.styles";
 //Data
 import { SideBarOpenContentData } from "@/app/data/data";
 // Page
@@ -26,7 +26,7 @@ const Containerss = styled.div<ContainerssType>`
     } else if (props.$TabletWidths === true) {
       return "100%";
     } else {
-      return "80vw";
+      return "95vw";
     }
   }};
 `;
@@ -34,26 +34,34 @@ export const SideBarOpenContent: React.FC<SideBarOpenContentType> = (props) => {
   return (
     <>
       <Row $maxHeight="auto" $maxWidth="100%">
-        <Ul $height="auto" $bgcolor="#252526" $padding="0">
+        <Ul
+          $height="auto"
+          $bgcolor="#252526"
+          $padding="0"
+          className="border border-customGray"
+          $TopBarUlzindex={props.TopBarUlzindex}
+        >
           {SideBarOpenContentData.map((file, index) => (
             <Li
               onClick={() => {
                 props.TabChange(file.id);
               }}
-              className={`py-10 pl-10 pr-20 border-1 hover:bg-[#2a2a2a]
+              className={`py-10 pl-10 pr-20 border-r border-#a0a0a0 hover:bg-[#2a2a2a]
                       ${props.State === file.id && "bg-[#37373d]"}`}
               $align="center"
               $width="auto"
               key={index}
             >
               {file.icon}
-              <h3>{file.label}</h3>
+              <ButtonText>{file.label}</ButtonText>
             </Li>
           ))}
         </Ul>
+
         <Containerss
           $TabletWidth={props.TabletWidthState}
           $TabletWidths={props.TabletWidthsState}
+          className="border border-my-color"
         >
           {props.State === "home" && <ReadmeContent />}
           {props.State === "project" && <ProjectContent />}

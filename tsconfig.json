@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/components/VisualStudio/Contents/Board.js",
-    "next.config.mjs"
-  ],
+    "next.config.mjs",
+    "tailwind.config.ts" // 여기에 추가
+, "src/app/components/common/CodeBlock.tsx3"  ],
   "exclude": ["node_modules"]
 }

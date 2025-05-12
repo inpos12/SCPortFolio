@@ -2,6 +2,12 @@ import styled, { css } from "styled-components";
 import { device } from "../common/MediaQuery";
 import { Style } from "@/app/type/style";
 import { transitionMinimize, transitionResize } from "./animation";
+import {
+  BodyText,
+  ButtonText,
+  Container,
+  SmallText,
+} from "../common/CommonStyles";
 
 // type //
 
@@ -14,6 +20,9 @@ type UlStyleType = Pick<
   | "$bgcolor"
   | "$flexCol"
   | "$gap"
+  | "$width"
+  | "$TabletWidth"
+  | "$TopBarUlzindex"
 >;
 
 type LiStyleType = Pick<
@@ -28,23 +37,23 @@ type LiStyleType = Pick<
   | "$mb"
 >;
 type VisualStudioAppStyleType = Pick<Style, "$minimized" | "$resized">;
-type ButtonStyleType = Pick<Style, "$TabletRight">;
+type ButtonStyleType = Pick<Style, "$TabletRight" | "$isSidebarOpen">;
 
 export const Ul = styled.ul<UlStyleType>`
-  width: 100%;
+  position: relative;
+  z-index: ${(props) => (props.$TopBarUlzindex ? 12 : 0)};
+  width: ${(props) => props.$width || "100%"};
   height: ${(props) => props.$height || "100%"};
   display: flex;
   justify-content: ${(props) => props.$justify || "start"};
   align-content: ${(props) => props.$align || "flex-start"};
   padding: ${(props) => props.$padding || "10px"};
-  border: 1px solid white;
   background-color: ${(props) => props.$bgcolor || "none"};
   flex-direction: ${(props) => (props.$flexCol ? "column" : "row")};
   gap: ${(props) => props.$gap || "0"};
 `;
 export const Li = styled.li<LiStyleType>`
   cursor: pointer;
-
   width: ${(props) => props.$width || "100%"};
   display: ${(props) => (props.$display ? "none" : "flex")};
   flex-direction: ${(props) => (props.$flexCol ? "column" : "row")};
@@ -91,36 +100,68 @@ export const ContainersSideBar = styled.div`
   position: relative;
   display: flex;
   height: calc(100% - 48px);
+  max-width: 30%;
+  height: 100%;
   width: 100%;
+  @media ${device.Tablet} {
+    z-index: 10;
+    position: absolute;
+  }
+  @media ${device.Mobile} {
+    display: none;
+  }
 `;
 
-export const ContainerSideMenu = styled.div`
+type State = {
+  $Zindex: boolean | null;
+};
+export const ContainerSideMenu = styled.div<State>`
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: ${(props) => (props.$Zindex ? 2 : -1)};
   @media ${device.Tablet} {
     position: absolute;
   }
   @media ${device.Mobile} {
     display: none;
   }
-  width: 30%;
-  height: 100%;
-  display: flex;
-  z-index: 2;
 `;
-export const ContainerContent = styled.div`
+
+type ContainerContentType = {
+  $ContentState: boolean;
+};
+export const ContainerContent = styled.div<ContainerContentType>`
+  max-width: ${(props) => (props.$ContentState ? "calc(100% - 48px)" : "100%")};
+  margin-left: ${(props) => (props.$ContentState ? "48px" : "0")};
   width: 100%;
   height: 100%;
   display: flex;
   height: 100%;
 `;
 export const Button = styled.button<ButtonStyleType>`
+  cursor: pointer;
   display: block;
   position: absolute;
-  background-color: red;
-  right: ${(props) => (props.$TabletRight === true ? "0" : "auto")};
+  font-size: 1.5rem;
   top: 50%;
   transform: translate(0, -50%);
   z-index: 2;
-  @media ${device.DeskTop} {
-    right: ${(props) => (props.$TabletRight === true ? "77%" : "auto")};
+  ${(props) =>
+    props.$isSidebarOpen
+      ? `
+  right: -48px
+  `
+      : `
+  left:0
+  
+  `}
+`;
+
+export const MobileErrorContainer = styled(Container)`
+  display: none;
+  @media ${device.Mobile} {
+    display: block;
   }
 `;

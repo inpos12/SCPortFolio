@@ -10,6 +10,7 @@ import { Layout } from "./components/layout";
 type StateType = {
   width: boolean | null;
   widths: boolean | null;
+  zindex: boolean | null;
 };
 type OwnType = {
   StateResize: Boolean;
@@ -25,9 +26,11 @@ const Home: React.FC<OwnType> = () => {
   const [tabletState, setTabletState] = useState<StateType>({
     width: null,
     widths: null,
+    zindex: null,
   });
+  const [ContentState, setContentState] = useState(true);
 
-  function VscOpen(e: React.MouseEvent<HTMLElement>) {
+  function VscOpen(e: React.MouseEvent) {
     e.preventDefault();
     if (state.windowopen) {
       dispatch({
@@ -62,22 +65,23 @@ const Home: React.FC<OwnType> = () => {
 
   useEffect(() => {
     if (state.resize === false && SideBar === false) {
-      setTabletState({ width: false, widths: null });
+      setTabletState({ width: false, widths: null, zindex: false });
       console.log("1");
     } else if (state.resize === false && SideBar === true) {
-      setTabletState({ width: true, widths: null });
+      setTabletState({ width: true, widths: null, zindex: true });
       console.log("2");
     } else if (state.resize === true && SideBar === false) {
-      setTabletState({ width: null, widths: false });
+      setTabletState({ width: null, widths: false, zindex: false });
       console.log("3");
     } else if (state.resize === true && SideBar === true) {
-      setTabletState({ width: null, widths: true });
+      setTabletState({ width: null, widths: true, zindex: true });
       console.log("4");
     }
   }, [state.resize, SideBar]);
   function SideBarHandler(e: React.MouseEvent<HTMLElement>) {
     e.preventDefault();
     setSideBar((prev) => !prev);
+    setContentState((prev) => !prev);
   }
 
   return (
@@ -86,6 +90,9 @@ const Home: React.FC<OwnType> = () => {
       <Main VscOpen={VscOpen} />
       {!state.windowopen && (
         <VisualStudio
+          isSidebarOpen={SideBar}
+          SideBarIcon={SideBar ? ">" : "<"}
+          TopBarUlzindex={!SideBar}
           WindowClose={CLose}
           StateResize={state.resize}
           ResizeHandler={ResizeHandler}
@@ -95,6 +102,8 @@ const Home: React.FC<OwnType> = () => {
           SideBarHandler={SideBarHandler}
           TabletWidthState={tabletState.width}
           TabletWidthsState={tabletState.widths}
+          Zindex={tabletState.zindex}
+          ContentState={ContentState}
         />
       )}
       <Layout state={state} MinimizeHandler={MinimizeHandler} />

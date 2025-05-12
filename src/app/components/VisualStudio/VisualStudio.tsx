@@ -7,8 +7,10 @@ import { Action } from "@/app/context/reducer";
 import {
   Icon,
   Container,
-  GrayText,
   Row,
+  ButtonText,
+  SubText,
+  Heading1,
 } from "@/app/components/common/CommonStyles";
 import {
   Ul,
@@ -19,6 +21,7 @@ import {
   Button,
   ContainerContent,
   ContainersSideBar,
+  MobileErrorContainer,
 } from "./VisualStudio.styles";
 import IconList from "../common/icon";
 // Type
@@ -26,6 +29,15 @@ import { VisualStudioType } from "@/app/type/VisualStudio";
 // Components
 import { SideBar } from "./Contents/Sidebar";
 import { SideBarOpenContent } from "./Contents/SideBarOpenContent";
+import styled from "styled-components";
+import { device } from "../common/MediaQuery";
+
+const Test = styled.div`
+  display: flex;
+  @media ${device.Mobile} {
+    display: none;
+  }
+`;
 
 export const VisualStudio: React.FC<VisualStudioType> = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -46,7 +58,10 @@ export const VisualStudio: React.FC<VisualStudioType> = (props) => {
       >
         <Container>
           <Row $maxHeight="auto" $maxWidth="auto">
-            <Ul $bgcolor="#323233">
+            <Ul
+              $bgcolor="#323233"
+              className="border-t border-l border-r border-#a0a0a0"
+            >
               <Icon
                 $filter={false}
                 $padding="0"
@@ -57,48 +72,63 @@ export const VisualStudio: React.FC<VisualStudioType> = (props) => {
                 className="mr-10"
               />
               <LiTablet $align="center" $gap="10px">
-                <GrayText>File</GrayText>
-                <GrayText>Edit</GrayText>
-                <GrayText>Selection</GrayText>
-                <GrayText>View</GrayText>
-                <GrayText>Go</GrayText>
-                <GrayText>Run</GrayText>
-                <GrayText className="mr-8">Terminal</GrayText>
-                <GrayText>Help</GrayText>
+                <ButtonText>File</ButtonText>
+                <ButtonText>Edit</ButtonText>
+                <ButtonText>Selection</ButtonText>
+                <ButtonText>View</ButtonText>
+                <ButtonText>Go</ButtonText>
+                <ButtonText>Run</ButtonText>
+                <ButtonText className="mr-8">Terminal</ButtonText>
+                <ButtonText>Help</ButtonText>
               </LiTablet>
-              <GrayText>VisualStudioCode</GrayText>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <SubText>VisualStudioCode</SubText>
+              </div>
+
               <Li $justify="end" $gap="10px">
-                <GrayText onClick={props.MinimizeHandler}>_</GrayText>
-                <GrayText onClick={props.ResizeHandler}>□</GrayText>
-                <GrayText className="ml-2" onClick={props.WindowClose}>
+                <ButtonText onClick={props.MinimizeHandler}>_</ButtonText>
+                <ButtonText onClick={props.ResizeHandler}>□</ButtonText>
+                <ButtonText className="ml-2" onClick={props.WindowClose}>
                   x
-                </GrayText>
+                </ButtonText>
               </Li>
             </Ul>
           </Row>
         </Container>
-        <ContainersSideBar>
-          <ContainerSideMenu>
+        <Test className="h-full relative">
+          <ContainersSideBar>
             {props.SideBarState && (
-              <SideBar TabChange={hanldeTabChange} State={state.activeTab} />
+              <ContainerSideMenu $Zindex={props.Zindex}>
+                <SideBar TabChange={hanldeTabChange} State={state.activeTab} />
+              </ContainerSideMenu>
             )}
             <Button
-              $TabletRight={props.SideBarState}
+              $isSidebarOpen={props.isSidebarOpen}
               onClick={props.SideBarHandler}
             >
-              X
+              {props.SideBarIcon}
             </Button>
-          </ContainerSideMenu>
+          </ContainersSideBar>
 
-          <ContainerContent>
+          <ContainerContent $ContentState={props.ContentState}>
             <SideBarOpenContent
+              TopBarUlzindex={props.TopBarUlzindex}
               TabChange={hanldeTabChange}
               State={state.activeTab}
               TabletWidthState={props.TabletWidthState}
               TabletWidthsState={props.TabletWidthsState}
             />
           </ContainerContent>
-        </ContainersSideBar>
+        </Test>
+        <MobileErrorContainer className="h-[calc(100%-48px)]">
+          <Row
+            $maxHeight="auto"
+            $maxWidth="auto"
+            className="flex justify-center items-center"
+          >
+            <Heading1>지원하지 않는 해상도 입니다.</Heading1>
+          </Row>
+        </MobileErrorContainer>
       </VisualStudioApp>
     </>
   );

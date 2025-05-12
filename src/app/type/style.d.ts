@@ -14,6 +14,7 @@ export type Style = {
   $height?: string;
   $zindex?: string;
   $padding?: string;
+  $isSidebarOpen: boolean;
   $filter: string;
   $justify?: string;
   $align?: string;
@@ -25,7 +26,8 @@ export type Style = {
   $visible?: boolean;
   $minimized: string | boolean;
   $resized: boolean;
-  $TabletRight: boolean | string;
-  $TabletWidth: boolean | null;
-  $TabletWidths: boolean | null;
+  $TabletRight?: boolean | string;
+  $TabletWidth?: boolean | null;
+  $TabletWidths?: boolean | null;
+  $TopBarUlzindex?: boolean;
 };

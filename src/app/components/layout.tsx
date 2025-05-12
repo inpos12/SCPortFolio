@@ -4,6 +4,7 @@ import styled from "styled-components";
 import IconList from "./common/icon";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { SmallText, SubText } from "./common/CommonStyles";
 
 const Section = styled.section`
   width: 100%;
@@ -50,6 +51,7 @@ const Search = styled.div`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
 const Input = styled.input`
+  font-size: 0.875rem;
   background-color: transparent;
   color: white;
   margin-left: 12px;
@@ -108,12 +110,12 @@ export const Layout: React.FC<OwnProps> = (props) => {
           )}
         </Li>
         <Li style={{ flexDirection: "column" }}>
-          <p>
+          <SmallText>
             {ampm} {hours}:{minutes}
-          </p>
-          <p>
+          </SmallText>
+          <SmallText>
             {year}-{month}-{day}
-          </p>
+          </SmallText>
         </Li>
       </Ul>
     </Section>

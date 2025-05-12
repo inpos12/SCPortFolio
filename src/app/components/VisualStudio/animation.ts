@@ -10,7 +10,7 @@ export const transitionResize = keyframes`
 
 }
 100% {
-  width: 80vw;
+  width: 95vw;
   height: calc(80vh - 42px);
   top: 50%;
   left: 50%;

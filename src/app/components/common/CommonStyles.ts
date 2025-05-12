@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { CommonStylesType } from "@/app/model/model";
+import { device } from "./MediaQuery";
+import { GrayColor, GrayColorType } from "@/app/styles/mixins";
 
 type RowType = Pick<CommonStylesType, "$maxWidth" | "$maxHeight">;
 type IconType = Pick<
@@ -41,4 +43,50 @@ export const Hr = styled.hr`
 
 export const GrayText = styled.p`
   color: #b0b0b0;
+`;
+
+export const BaseText = styled.p<GrayColorType>`
+  ${GrayColor}
+`;
+// 기본 본문 텍스트 p
+export const BodyText = styled(BaseText)`
+  font-size: 1rem; /* 16px */
+`;
+
+export const CodeText = styled(BaseText).attrs({ as: "pre" })`
+  font-size: 0.8125rem;
+  white-space: pre-wrap;
+`;
+// 설명 또는 부제목 p
+export const SubText = styled(BaseText)`
+  font-size: 0.875rem; /* 14px */
+`;
+
+// 작은 부가 텍스트 span
+export const SmallText = styled(BaseText).attrs({ as: "span" })`
+  font-size: 0.75rem; /* 12px */
+`;
+
+// 버튼용 텍스트 (기본값 14px) span
+export const ButtonText = styled(BaseText).attrs({ as: "span" })`
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+`;
+
+// H1 제목
+export const Heading1 = styled(BaseText).attrs({ as: "h1" })`
+  font-size: 2rem; /* 32px */
+  font-weight: bold;
+`;
+
+// H2 제목
+export const Heading2 = styled(BaseText).attrs({ as: "h2" })`
+  font-size: 1.5rem; /* 24px */
+  font-weight: bold;
+`;
+
+// H3 제목
+export const Heading3 = styled(BaseText).attrs({ as: "h3" })`
+  font-size: 1.25rem; /* 20px */
+  font-weight: bold;
 `;

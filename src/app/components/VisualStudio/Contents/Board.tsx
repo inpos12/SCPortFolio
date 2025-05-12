@@ -6,15 +6,41 @@ import {
   PreGrayText,
   SendButton,
   Input,
-} from "./ContentesStyles";
-import { GrayText, Hr, Icon, Row } from "../../common/CommonStyles";
+} from "./ContentStyle/ContentesStyles";
+import {
+  BodyText,
+  CodeText,
+  GrayText,
+  Heading1,
+  Heading2,
+  Heading3,
+  Hr,
+  Icon,
+  Row,
+  SmallText,
+  SubText,
+} from "../../common/CommonStyles";
 import { useEffect, useState } from "react";
 import IconList from "../../common/icon";
 import { Data, DetailOwnProps } from "@/app/type/ApiData";
+import { DetailList } from "./Board/DetailList";
 export const BoardContent: React.FC = () => {
   const [list, setList] = useState<Data[]>([]);
   const [detailTab, setDetailTab] = useState(false);
   const [detaillist, setDetailList] = useState([]);
+
+  // 방명록 리스트 불러오는 함수
+  async function BoardView() {
+    const GetApi = "/api/board/";
+    try {
+      const result = await axios.get(GetApi);
+      if (result.status === 200) {
+        setList(result.data.result);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
   async function BoardAddHandler(
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> {
@@ -25,11 +51,11 @@ export const BoardContent: React.FC = () => {
     const detail = (form.elements.namedItem("detail") as HTMLInputElement)
       .value;
     const PostApi = "/api/board/";
-
     try {
       const result = await axios.post(PostApi, { title, name, detail });
       if (result.status === 200) {
         alert(result.data.message);
+        BoardView();
       }
     } catch (err) {
       // AxiosError로 타입을 지정
@@ -44,18 +70,8 @@ export const BoardContent: React.FC = () => {
       }
     }
   }
+
   useEffect(() => {
-    async function BoardView() {
-      const GetApi = "/api/board/";
-      try {
-        const result = await axios.get(GetApi);
-        if (result.status === 200) {
-          setList(result.data.result);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
     BoardView();
   }, []);
 
@@ -64,6 +80,7 @@ export const BoardContent: React.FC = () => {
     const GetApi = "/api/board/detail";
     try {
       const result = await axios.get(GetApi, { params: { currentid: id } });
+      console.log(id);
       if (result.status === 200) {
         setDetailTab((prev) => !prev);
         setDetailList(result.data.result);
@@ -76,12 +93,12 @@ export const BoardContent: React.FC = () => {
   return (
     <>
       <ContentRow $maxHeight="auto" $maxWidth="auto" className="fade-in">
-        <h1 className="mt-10 mb-20">BoardContent</h1>
+        <Heading1 className="mt-10 mb-20">BoardContent</Heading1>
         <Hr />
-        <GrayText className="mb-20">방문기록을 남겨주세요</GrayText>
+        <BodyText className="mb-20">방문기록을 남겨주세요</BodyText>
         <Hr />
         <CodeBox className="mb-20">
-          <PreGrayText>
+          <CodeText $GrayColor={true}>
             {`// Board.js
 import axios from "axios"
  async function BoardAddHandler(e) {
@@ -105,23 +122,34 @@ import axios from "axios"
     </div>
   );
 }`}
-          </PreGrayText>
+          </CodeText>
         </CodeBox>
-        <CodeBox className="mb-20" as="form" onSubmit={BoardAddHandler}>
-          <GrayText className="mb-20">Title</GrayText>
-          <Input name="title" className="mb-20" placeholder="Enter Title" />
-          <GrayText className="mb-20">Your name</GrayText>
-          <Input name="name" className="mb-20" placeholder="Enter Your Name" />
-          <GrayText className="mb-20">Message</GrayText>
+        <CodeBox className="mb-5" as="form" onSubmit={BoardAddHandler}>
+          <SubText $GrayColor={true} className="mb-5">
+            Title
+          </SubText>
+          <Input name="title" className="mb-5" placeholder="Enter Title" />
+          <SubText $GrayColor={true} className="mb-5">
+            Your name
+          </SubText>
           <Input
+            name="name"
+            className="mb-5"
+            placeholder="Enter Your Name"
+            maxLength={3}
+          />
+          <SubText $GrayColor={true} className="mb-5">
+            Message
+          </SubText>
+          <Input
+            as="textarea"
             name="detail"
             $height="100px"
-            as="textarea"
             placeholder="Write a message..."
           />
           <SendButton>Submit</SendButton>
         </CodeBox>
-        <h1 className="mb-20">방명록</h1>
+        <Heading2 className="mb-20">방명록</Heading2>
         {list.map((item, index) => (
           <CodeBox
             onClick={() => {
@@ -136,110 +164,16 @@ import axios from "axios"
             key={index}
             className="mb-20"
           >
-            <h3 style={{ width: "90%", borderRight: "1px solid #4c4c4c" }}>
+            <BodyText
+              style={{ width: "90%", borderRight: "1px solid #4c4c4c" }}
+            >
               {item.title}
-            </h3>
-            <h3>{item.name}</h3>
+            </BodyText>
+            <BodyText>{item.name}</BodyText>
           </CodeBox>
         ))}
-
-        {detailTab && <DetailContent item={detaillist} button={setDetailTab} />}
+        {detailTab && <DetailList item={detaillist} button={setDetailTab} />}
       </ContentRow>
-    </>
-  );
-};
-const FullBackground = styled(ContentRow)`
-  position: absolute;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  background-color: rgba(30, 30, 30, 0.5);
-`;
-const ModalBox = styled(CodeBox)`
-  position: absolute;
-  background-color: #3c3c3c;
-  border: 1px solid #6a6a6a;
-  max-width: 500px;
-  width: 100%;
-  top: 33%;
-  left: 33%;
-  transform: translate(-25% -25%);
-  padding: 0;
-`;
-
-const DetailContent: React.FC<DetailOwnProps> = (props) => {
-  return (
-    <>
-      {props.item.map((item, index) => (
-        <FullBackground $maxHeight="auto" $maxWidth="auto" key={index}>
-          <ModalBox>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-                padding: "10px 8px",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Icon
-                  $filter={true}
-                  $padding="0"
-                  $zindex="1"
-                  $maxWidth="20px"
-                  src={IconList.FileIcon}
-                  alt="fileicon"
-                />
-                <p className="ml-15">{item.title}</p>
-              </div>
-              <div>
-                <p
-                  onClick={() => {
-                    props.button(false);
-                  }}
-                  style={{ cursor: "pointer" }}
-                >
-                  x
-                </p>
-              </div>
-            </div>
-            <CodeBox
-              style={{
-                padding: "10px 8px ",
-                borderTop: "1px solid #6a6a6a",
-                borderBottom: "1px solid #6a6a6a",
-                borderRadius: "0",
-                margin: "0",
-              }}
-            >
-              <h2>{item.title}</h2>
-              <GrayText className="mb-10" as="h4">
-                by {item.name}
-              </GrayText>
-              <Hr />
-              <p>{item.detail}</p>
-            </CodeBox>
-            <Row
-              $maxHeight="auto"
-              $maxWidth="auto"
-              style={{ textAlign: "right", padding: "10px 8px" }}
-            >
-              <SendButton
-                onClick={() => {
-                  props.button(false);
-                }}
-              >
-                Close
-              </SendButton>
-            </Row>
-          </ModalBox>
-        </FullBackground>
-      ))}
     </>
   );
 };

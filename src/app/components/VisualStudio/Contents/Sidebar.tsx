@@ -1,11 +1,18 @@
 import { useReducer } from "react";
 import { SideBarType, DataType } from "@/app/type/SideBar";
 import { reducer, initialState } from "@/app/context/reducer";
-import { Icon } from "../../common/CommonStyles";
+import {
+  ButtonText,
+  Heading3,
+  Icon,
+  SmallText,
+  SubText,
+} from "../../common/CommonStyles";
 import IconList from "../../common/icon";
 import { Row, GrayText } from "../../common/CommonStyles";
 import { Ul, Li } from "../VisualStudio.styles";
 import { filetree } from "@/app/data/data";
+import Link from "next/link";
 export const SideBar: React.FC<SideBarType> = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -22,7 +29,12 @@ export const SideBar: React.FC<SideBarType> = (props) => {
         $maxWidth="auto"
         style={{ minWidth: "60px", maxWidth: "80px" }}
       >
-        <Ul $flexCol="column" $justify="space-between" $bgcolor="#333333">
+        <Ul
+          $flexCol="column"
+          $justify="space-between"
+          $bgcolor="#333333"
+          className="border border-#a0a0a0"
+        >
           <Li $flexCol="column" $align="center" $gap="20px">
             <Icon
               $filter={true}
@@ -31,6 +43,9 @@ export const SideBar: React.FC<SideBarType> = (props) => {
               $maxWidth="40px"
               alt="fileicon"
               src={IconList.FileIcon}
+              onClick={() => {
+                props.TabChange(filetree[0].id);
+              }}
             />
             <Icon
               $filter={true}
@@ -40,14 +55,20 @@ export const SideBar: React.FC<SideBarType> = (props) => {
               alt="searchicon"
               src={IconList.SearchIcon}
             />
-            <Icon
-              $filter={true}
-              $padding="0"
-              $zindex="1"
-              $maxWidth="40px"
-              alt="github"
-              src={IconList.Github}
-            />
+            <Link
+              target="blank"
+              href="https://github.com/inpos12"
+              style={{ maxWidth: "40px", width: "100%" }}
+            >
+              <Icon
+                $filter={true}
+                $padding="0"
+                $zindex="1"
+                $maxWidth="40px"
+                alt="github"
+                src={IconList.Github}
+              />
+            </Link>
           </Li>
           <Li $flexCol="column" $align="center">
             <Icon
@@ -61,10 +82,17 @@ export const SideBar: React.FC<SideBarType> = (props) => {
           </Li>
         </Ul>
       </Row>
-      <Row $maxHeight="auto" $maxWidth="100%" className="bg-[#252526]">
-        <Ul $flexCol="column" $gap="3px">
+      <Row $maxHeight="auto" $maxWidth="100%">
+        <Ul
+          $flexCol="column"
+          $gap="3px"
+          $TabletWidth={true}
+          className="border-b border-t border-r border-#a0a0a0 "
+          $bgcolor="#252526;"
+          style={{ width: "calc(100% + 48px)" }}
+        >
           <Li $mb="5px">
-            <h3>EXPLORER</h3>
+            <SubText>EXPLORER</SubText>
           </Li>
           <Li $align="center" onClick={setDropDownHandler}>
             <Icon
@@ -78,7 +106,7 @@ export const SideBar: React.FC<SideBarType> = (props) => {
                 transform: state.dropdown === true ? "rotate(90deg)" : "",
               }}
             />
-            <GrayText style={{ fontSize: "12px" }}>MY_PORTFOLIO</GrayText>
+            <ButtonText style={{ fontSize: "12px" }}>MY_PORTFOLIO</ButtonText>
           </Li>
           {filetree.map(
             (file, index) =>
@@ -94,7 +122,7 @@ export const SideBar: React.FC<SideBarType> = (props) => {
                   style={{ borderRadius: "3px" }}
                 >
                   {file.icon}
-                  <GrayText className="w-full ml-7">{file.label}</GrayText>
+                  <ButtonText className="w-full ml-7">{file.label}</ButtonText>
                 </Li>
               )
           )}

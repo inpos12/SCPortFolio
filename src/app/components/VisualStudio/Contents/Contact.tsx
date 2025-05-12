@@ -6,8 +6,14 @@ import {
   CodeBox,
   Input,
   SendButton,
-} from "./ContentesStyles";
-import { GrayText } from "../../common/CommonStyles";
+} from "./ContentStyle/ContentesStyles";
+import {
+  BodyText,
+  CodeText,
+  GrayText,
+  Heading1,
+  SubText,
+} from "../../common/CommonStyles";
 import { Hr } from "../../common/CommonStyles";
 export const ContactContent: React.FC = () => {
   async function SendMailHandler(
@@ -37,15 +43,15 @@ export const ContactContent: React.FC = () => {
 
   return (
     <>
-      <ContentRow $maxHeight="auto" $maxWidth="auto" className="fade-in">
-        <h1 className="mt-10 mb-20">ContactContent</h1>
+      <ContentRow $maxHeight="auto" $maxWidth="auto">
+        <Heading1 className="mt-10 mb-20">ContactContent</Heading1>
         <Hr />
-        <GrayText className="mb-20">
+        <BodyText className="mb-20">
           궁금한 점이 있으시면 언제든지 메일 주세요
-        </GrayText>
+        </BodyText>
         <Hr />
         <CodeBox className="mb-20">
-          <PreGrayText>
+          <CodeText $GrayColor={true}>
             {`// Contact.js
 import axios from "axios";
 async function SendMailHandler(e) {
@@ -65,22 +71,28 @@ return (
     {/* Contact form */}
   </div>
 );`}
-          </PreGrayText>
+          </CodeText>
         </CodeBox>
-        <CodeBox className="mb-20" as="form" onSubmit={SendMailHandler}>
-          <GrayText className="mb-20">Email</GrayText>
+        <CodeBox className="mb-5" as="form" onSubmit={SendMailHandler}>
+          <SubText $GrayColor={true} className="mb-5">
+            Email
+          </SubText>
           <Input
             name="email"
-            className="mb-20"
+            className="mb-5"
             placeholder="Your.email.@example.com"
           />
-          <GrayText className="mb-20">Title</GrayText>
-          <Input name="title" className="mb-20" placeholder="Enter Title" />
-          <GrayText className="mb-20">Message</GrayText>
+          <SubText $GrayColor={true} className="mb-5">
+            Title
+          </SubText>
+          <Input name="title" className="mb-5" placeholder="Enter Title" />
+          <SubText $GrayColor={true} className="mb-5">
+            Message
+          </SubText>
           <Input
+            as="textarea"
             name="text"
             $height="100px"
-            as="textarea"
             placeholder="Write a message..."
             className="mb-10"
           />

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { IconWrapper } from "./layout";
 import IconList from "./common/icon";
 import { Style } from "../type/style";
+import { Heading2 } from "./common/CommonStyles";
 
 type IconType = Pick<Style, "$zindex" | "$maxWidth" | "$padding" | "$filter">;
 const Container = styled.div`
@@ -23,6 +24,8 @@ const Icon = styled(Image)<IconType>`
       : "invert(99%) sepia(67%) saturate(0%) hue-rotate(324deg) brightness(117%) contrast(100%)"};
 `;
 const IconRow = styled(IconWrapper)`
+  padding: 0;
+  margin: 10px;
   max-width: 150px;
   width: 100%;
   display: grid;
@@ -31,7 +34,7 @@ const IconRow = styled(IconWrapper)`
 `;
 
 type OwnProps = {
-  VscOpen: () => void;
+  VscOpen: (e: React.MouseEvent<Element>) => void;
 };
 export const Main: React.FC<OwnProps> = (props) => {
   return (
@@ -45,7 +48,7 @@ export const Main: React.FC<OwnProps> = (props) => {
             src={IconList.VSIcon}
             $filter="none"
           />
-          <h1 className="mt-2">Visual Studio Code</h1>
+          <Heading2 className="mt-2">Visual Studio Code</Heading2>
         </IconRow>
       </Container>
     </>

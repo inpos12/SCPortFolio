@@ -3,6 +3,6 @@ export type ProjectType = {
   name: string;
   description: string;
   tectnologies: string[];
-  github: string;
+  github?: string;
   demo: string;
 };

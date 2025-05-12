@@ -15,6 +15,7 @@ const IntroContainer = styled.div`
 `;
 
 const IntroH1 = styled.h1<IntroH1Type>`
+  font-size: 2rem;
   transition: all 1s ease-in-out;
   position: absolute;
   top: 50%;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { Row } from "../../common/CommonStyles";
+import { BodyText, Row, SmallText } from "../../../common/CommonStyles";
 import { Style } from "@/app/type/style";
 
-type InputType = Pick<Style, "$height">;
+type InputType = Pick<Style, "$height"> & { name: string; placeholder: string };
 
 //  컨텐츠부분분
 export const CodeBox = styled.div<{ as?: React.ElementType }>`
@@ -37,7 +37,7 @@ export const ContentRow = styled(Row)`
     background-color: #3c3c3c;
   }
 `;
-export const SendButton = styled.button`
+export const SendButton = styled(BodyText).attrs({ as: "button" })`
   cursor: pointer;
   padding: 5px 10px;
   background-color: #007acc;
@@ -46,6 +46,7 @@ export const SendButton = styled.button`
 `;
 
 export const Input = styled.input<InputType>`
+  font-size: 0.75rem;
   width: 100%;
   height: ${(props) => props.$height || "auto"}; // $height가 없으면 'auto' 사용
   padding: 5px 10px;
@@ -54,7 +55,6 @@ export const Input = styled.input<InputType>`
   background-color: #3c3c3c;
   border: 1px solid #6a6a6a;
   border-radius: 10px;
-  font-size: 13px;
   &:focus {
     outline: none;
     border: 1px solid #007acc;

@@ -8,4 +8,9 @@ export type VisualStudioType = {
   SideBarState: boolean;
   TabletWidthState: boolean | null;
   TabletWidthsState: boolean | null;
+  Zindex: boolean | null;
+  ContentState: boolean;
+  SideBarIcon: string;
+  isSidebarOpen: boolean;
+  TopBarUlzindex: boolean;
 };
