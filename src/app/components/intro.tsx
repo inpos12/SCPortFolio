@@ -1,5 +1,5 @@
 "use client";
-
+import React from "react";
 import styled from "styled-components";
 import { Style } from "../model/model";
 import Test from "@/app/image/windowLoginProfile.png";
