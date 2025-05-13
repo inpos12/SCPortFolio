@@ -23,7 +23,7 @@ import {
   ContainersSideBar,
   MobileErrorContainer,
 } from "./VisualStudio.styles";
-import IconList from "../common/icon";
+import IconList from "@/app/components/common/icons";
 // Type
 import { VisualStudioType } from "@/app/type/VisualStudio";
 // Components

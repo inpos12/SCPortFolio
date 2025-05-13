@@ -1,15 +1,9 @@
 import { useReducer } from "react";
-import { SideBarType, DataType } from "@/app/type/SideBar";
+import { SideBarType } from "@/app/type/SideBar";
 import { reducer, initialState } from "@/app/context/reducer";
-import {
-  ButtonText,
-  Heading3,
-  Icon,
-  SmallText,
-  SubText,
-} from "../../common/CommonStyles";
-import IconList from "../../common/icon";
-import { Row, GrayText } from "../../common/CommonStyles";
+import { ButtonText, Icon, SubText } from "../../common/CommonStyles";
+import IconList from "@/app/components/common/icons";
+import { Row } from "../../common/CommonStyles";
 import { Ul, Li } from "../VisualStudio.styles";
 import { filetree } from "@/app/data/data";
 import Link from "next/link";

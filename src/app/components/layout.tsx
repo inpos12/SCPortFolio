@@ -1,10 +1,10 @@
 "use client";
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import styled from "styled-components";
-import IconList from "./common/icon";
+import IconList from "@/app/components/common/icons";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { SmallText, SubText } from "./common/CommonStyles";
+import { SmallText } from "./common/CommonStyles";
 
 const Section = styled.section`
   width: 100%;

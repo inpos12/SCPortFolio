@@ -8,7 +8,7 @@ import {
   SubText,
 } from "@/app/components/common/CommonStyles";
 import styled from "styled-components";
-import IconList from "@/app/components/common/icon";
+import IconList from "@/app/components/common/icons";
 import Link from "next/link";
 const Skills = styled(SubText)`
   padding: 5px;

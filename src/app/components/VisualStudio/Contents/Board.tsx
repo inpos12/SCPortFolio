@@ -1,28 +1,21 @@
 import axios, { AxiosError } from "axios";
-import styled from "styled-components";
 import {
   ContentRow,
   CodeBox,
-  PreGrayText,
   SendButton,
   Input,
 } from "./ContentStyle/ContentesStyles";
 import {
   BodyText,
   CodeText,
-  GrayText,
   Heading1,
   Heading2,
-  Heading3,
   Hr,
-  Icon,
-  Row,
-  SmallText,
   SubText,
 } from "../../common/CommonStyles";
 import { useEffect, useState } from "react";
-import IconList from "../../common/icon";
-import { Data, DetailOwnProps } from "@/app/type/ApiData";
+
+import { Data } from "@/app/type/ApiData";
 import { DetailList } from "./Board/DetailList";
 export const BoardContent: React.FC = () => {
   const [list, setList] = useState<Data[]>([]);

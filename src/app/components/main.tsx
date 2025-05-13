@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import { IconWrapper } from "./layout";
-import IconList from "./common/icon";
+import IconList from "@/app/components/common/icons";
 import { Style } from "../type/style";
 import { Heading2 } from "./common/CommonStyles";
 

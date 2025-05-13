@@ -7,7 +7,7 @@ import {
 } from "../ContentStyle/ContentesStyles";
 import { DetailOwnProps } from "@/app/type/ApiData";
 
-import IconList from "@/app/components/common/icon";
+import IconList from "@/app/components/common/icons";
 import {
   Hr,
   Icon,

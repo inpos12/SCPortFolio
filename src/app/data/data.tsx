@@ -1,6 +1,5 @@
 import { Icon } from "../components/common/CommonStyles";
-import { ProjectType } from "../type/project";
-import IconList from "../components/common/icon";
+import IconList from "../components/common/icons";
 
 type SideTabType = {
   id: string;
@@ -159,4 +158,3 @@ export const SideBarOpenContentData: SideTabType[] = [
     ),
   },
 ];
-
