@@ -82,12 +82,10 @@ const Home = () => {
   }
 
   useEffect(() => {
-    if (isLoading) {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2800);
-    }
-  }, [isLoading]);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2800);
+  }, []);
 
   function LoginButtonHandler() {
     setIsLogin((prev) => !prev);
