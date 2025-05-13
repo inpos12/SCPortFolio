@@ -4,7 +4,7 @@ import { Style } from "@/app/type/style";
 import { SideBarOpenContentType } from "@/app/type/SideBarOpenContent";
 // Styles
 import { ButtonText, Row } from "../../common/CommonStyles";
-import { Ul, Li, Button } from "../VisualStudio.styles";
+import { Ul, Li } from "../VisualStudio.styles";
 //Data
 import { SideBarOpenContentData } from "@/app/data/data";
 // Page
@@ -13,11 +13,11 @@ import { ProjectContent } from "./Project";
 import { SkillContent } from "./Skill";
 import { BoardContent } from "./Board";
 import { ContactContent } from "./Contact";
-
+import AnimatedSection from "../../common/Animatiom";
 type ContainerssType = Pick<Style, "$TabletWidth" | "$TabletWidths">;
 const Containerss = styled.div<ContainerssType>`
   background-color: #252526;
-  height: calc(100% - 45px);
+  height: calc(100% - 41px);
   width: ${(props) => {
     if (props.$TabletWidth === true) {
       return "100%";
@@ -30,6 +30,7 @@ const Containerss = styled.div<ContainerssType>`
     }
   }};
 `;
+
 export const SideBarOpenContent: React.FC<SideBarOpenContentType> = (props) => {
   return (
     <>
@@ -63,11 +64,23 @@ export const SideBarOpenContent: React.FC<SideBarOpenContentType> = (props) => {
           $TabletWidths={props.TabletWidthsState}
           className="border border-my-color"
         >
-          {props.State === "home" && <ReadmeContent />}
-          {props.State === "project" && <ProjectContent />}
-          {props.State === "skill" && <SkillContent />}
-          {props.State === "board" && <BoardContent />}
-          {props.State === "contact" && <ContactContent />}
+          {props.State === "home" && (
+            <AnimatedSection ContentComponent={ReadmeContent} />
+          )}
+
+          {props.State === "project" && (
+            <AnimatedSection ContentComponent={ProjectContent} />
+          )}
+
+          {props.State === "skill" && (
+            <AnimatedSection ContentComponent={SkillContent} />
+          )}
+          {props.State === "board" && (
+            <AnimatedSection ContentComponent={BoardContent} />
+          )}
+          {props.State === "contact" && (
+            <AnimatedSection ContentComponent={ContactContent} />
+          )}
         </Containerss>
       </Row>
     </>

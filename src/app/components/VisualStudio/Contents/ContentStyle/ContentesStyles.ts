@@ -25,7 +25,6 @@ export const ContentRow = styled(Row)`
   &::-webkit-scrollbar {
     width: 8px; /* 스크롤바의 너비 */
   }
-
   &::-webkit-scrollbar-thumb {
     background-color: gray; /* 스크롤바의 색상 */
     border-radius: 10px; /* 스크롤바의 모서리 둥글게 */

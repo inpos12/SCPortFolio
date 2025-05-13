@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { IconWrapper } from "./layout";
 import IconList from "@/app/components/common/icons";
 import { Style } from "../type/style";
-import { Heading2 } from "./common/CommonStyles";
+import { Heading1, Heading2 } from "./common/CommonStyles";
 
 type IconType = Pick<Style, "$zindex" | "$maxWidth" | "$padding" | "$filter">;
 const Container = styled.div`
@@ -25,8 +25,8 @@ const Icon = styled(Image)<IconType>`
 `;
 const IconRow = styled(IconWrapper)`
   padding: 0;
-  margin: 10px;
-  max-width: 150px;
+  margin: 30px;
+  max-width: 180px;
   width: 100%;
   display: grid;
   place-items: center;
@@ -40,10 +40,10 @@ export const Main: React.FC<OwnProps> = (props) => {
   return (
     <>
       <Container>
-        <IconRow onClick={props.VscOpen}>
+        <IconRow onClick={props.VscOpen} style={{ cursor: "pointer" }}>
           <Icon
             $zindex="-1"
-            $maxWidth="50px"
+            $maxWidth="120px"
             alt="VSicon"
             src={IconList.VSIcon}
             $filter="none"

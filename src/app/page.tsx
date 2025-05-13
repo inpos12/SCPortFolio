@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { useEffect, useReducer, useState } from "react";
-import { Intro } from "./components/intro";
+import Intro from "./components/intro";
 import { Main } from "./components/main";
 import { VisualStudio } from "./components/VisualStudio/VisualStudio";
 import { initialState, reducer } from "./context/reducer";
 import { Layout } from "./components/layout";
+import WindowLoadingScreen from "./components/Windowloading";
 
 type StateType = {
   width: boolean | null;
@@ -15,6 +16,9 @@ type StateType = {
 
 const Home = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
+  const [intro, setIntro] = useState(true);
   const [SideBar, setSideBar] = useState(true);
   const [tabletState, setTabletState] = useState<StateType>({
     width: null,
@@ -77,10 +81,33 @@ const Home = () => {
     setContentState((prev) => !prev);
   }
 
+  useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2800);
+    }
+  }, [isLoading]);
+
+  function LoginButtonHandler() {
+    setIsLogin((prev) => !prev);
+    setTimeout(() => {
+      setIntro(false);
+    }, 3200);
+  }
+
   return (
     <>
-      <Intro />
-      <Main VscOpen={VscOpen} />
+      <WindowLoadingScreen isLoading={isLoading} />
+      {/* <Windowloading /> */}
+      {!isLoading && (
+        <Intro
+          setIntro={intro}
+          isLoginLoading={isLogin}
+          LoginButtonHandler={LoginButtonHandler}
+        />
+      )}
+      {!intro && <Main VscOpen={VscOpen} />}
       {!state.windowopen && (
         <VisualStudio
           isSidebarOpen={SideBar}
@@ -99,7 +126,7 @@ const Home = () => {
           ContentState={ContentState}
         />
       )}
-      <Layout state={state} MinimizeHandler={MinimizeHandler} />
+      {!intro && <Layout state={state} MinimizeHandler={MinimizeHandler} />}
     </>
   );
 };

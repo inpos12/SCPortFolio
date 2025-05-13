@@ -13,7 +13,7 @@ import { ProjectList } from "./Project/ProjectList";
 export const ProjectContent: React.FC = () => {
   return (
     <>
-      <ContentRow $maxHeight="auto" $maxWidth="auto" className="fade-in">
+      <ContentRow $maxHeight="auto" $maxWidth="auto">
         <Heading1 className="mt-10 mb-20">ProjectContent</Heading1>
         <Hr />
         <Heading2 className="m-10">React</Heading2>

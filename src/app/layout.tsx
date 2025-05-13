@@ -11,6 +11,9 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
+      <head>
+        <title>SeungChan ProtFolio</title>
+      </head>
       <body>
         <nav>
           <StyledComponentsRegistry>

@@ -1,4 +1,3 @@
-import { Icon } from "./CommonStyles";
 import VSIcon from "@/app/image/VS아이콘.png";
 import WindowIcon from "@/app/image/시작버튼아이콘.svg";
 import FileIcon from "@/app/image/file-text.svg";
