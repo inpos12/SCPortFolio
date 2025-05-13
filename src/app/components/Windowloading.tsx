@@ -31,7 +31,7 @@ type Props = {
   isLoading: boolean;
 };
 
-export const WindowLoadingScreen = ({ isLoading }: Props) => {
+export const WindowLoadingScreen: React.FC<Props> = ({ isLoading }) => {
   return (
     <>
       <AnimatePresence>

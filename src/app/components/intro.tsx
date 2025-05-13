@@ -51,11 +51,11 @@ type Props = {
   LoginButtonHandler: () => void;
   isLoginLoading: boolean;
 };
-export const Intro = ({
+export const Intro: React.FC<Props> = ({
   setIntro,
   LoginButtonHandler,
   isLoginLoading,
-}: Props) => {
+}) => {
   return (
     <>
       <AnimatePresence>
