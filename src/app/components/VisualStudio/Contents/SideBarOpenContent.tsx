@@ -13,7 +13,7 @@ import { ProjectContent } from "./Project";
 import { SkillContent } from "./Skill";
 import { BoardContent } from "./Board";
 import { ContactContent } from "./Contact";
-import AnimatedSection from "../../common/Animatiom";
+import { AnimatedSection } from "../../common/Animatiom";
 type ContainerssType = Pick<Style, "$TabletWidth" | "$TabletWidths">;
 const Containerss = styled.div<ContainerssType>`
   background-color: #252526;

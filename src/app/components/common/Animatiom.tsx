@@ -10,7 +10,7 @@ interface AnimatedSectionProps {
 }
 
 const MotionContentRow = motion(ContentRow);
-const AnimatedSection: React.FC<AnimatedSectionProps> = ({
+export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   ContentComponent,
 }) => {
   return (
@@ -28,4 +28,3 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
     </AnimatePresence>
   );
 };
-export default AnimatedSection;

@@ -51,7 +51,11 @@ type Props = {
   LoginButtonHandler: () => void;
   isLoginLoading: boolean;
 };
-const Intro = ({ setIntro, LoginButtonHandler, isLoginLoading }: Props) => {
+export const Intro = ({
+  setIntro,
+  LoginButtonHandler,
+  isLoginLoading,
+}: Props) => {
   return (
     <>
       <AnimatePresence>
@@ -82,4 +86,3 @@ const Intro = ({ setIntro, LoginButtonHandler, isLoginLoading }: Props) => {
     </>
   );
 };
-export default Intro;

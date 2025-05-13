@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import { useEffect, useReducer, useState } from "react";
-import Intro from "./components/intro";
+import { Intro } from "./components/intro";
 import { Main } from "./components/main";
 import { VisualStudio } from "./components/VisualStudio/VisualStudio";
 import { initialState, reducer } from "./context/reducer";
 import { Layout } from "./components/layout";
-import WindowLoadingScreen from "./components/Windowloading";
+import { WindowLoadingScreen } from "./components/Windowloading";
 
 type StateType = {
   width: boolean | null;
@@ -81,11 +81,11 @@ const Home = () => {
     setContentState((prev) => !prev);
   }
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 2800);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2800);
+  }, []);
 
   function LoginButtonHandler() {
     setIsLogin((prev) => !prev);

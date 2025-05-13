@@ -31,7 +31,7 @@ type Props = {
   isLoading: boolean;
 };
 
-const WindowLoadingScreen = ({ isLoading }: Props) => {
+export const WindowLoadingScreen = ({ isLoading }: Props) => {
   return (
     <>
       <AnimatePresence>
@@ -63,4 +63,3 @@ const WindowLoadingScreen = ({ isLoading }: Props) => {
     </>
   );
 };
-export default WindowLoadingScreen;
