@@ -9,7 +9,7 @@ interface AnimatedSectionProps {
   ContentComponent: React.ComponentType;
 }
 
-const MotionContentRow = motion(ContentRow);
+const MotionContentRow = motion.create(ContentRow);
 export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   ContentComponent,
 }) => {

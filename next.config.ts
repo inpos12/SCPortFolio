@@ -5,7 +5,13 @@ const nextConfig: NextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["user-images.githubusercontent.com"], // 여기에 외부 도메인을 추가합니다.
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "user-images.githubusercontent.com",
+        pathname: "/**",
+      },
+    ],
   },
 };
 

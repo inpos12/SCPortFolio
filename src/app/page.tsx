@@ -96,7 +96,7 @@ const Home = () => {
 
   return (
     <>
-      <WindowLoadingScreen isLoading={isLoading} />
+      {isLoading && <WindowLoadingScreen isLoading={isLoading} />}
       {/* <Windowloading /> */}
       {!isLoading && (
         <Intro
