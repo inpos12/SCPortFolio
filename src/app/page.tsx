@@ -81,11 +81,11 @@ const Home = () => {
     setContentState((prev) => !prev);
   }
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2800);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 2800);
+  // }, []);
 
   function LoginButtonHandler() {
     setIsLogin((prev) => !prev);
