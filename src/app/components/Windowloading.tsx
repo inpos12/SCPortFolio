@@ -5,7 +5,7 @@ import Image from "next/image";
 import Lottie from "lottie-react";
 import animation from "@/app/image/LoadingAnimation.json";
 import IconList from "@/app/components/common/icons";
-import { AnimatePresence, motion } from "framer-motion";
+
 const LoadingContainer = styled.div`
   position: absolute;
   min-width: 100vw;
@@ -25,10 +25,6 @@ const LoadingRow = styled.div`
   max-height: 100%;
   align-items: center;
 `;
-
-type Props = {
-  isLoading: boolean;
-};
 
 export const WindowLoadingScreen: React.FC = () => {
   return (
