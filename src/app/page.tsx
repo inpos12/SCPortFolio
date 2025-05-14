@@ -98,13 +98,13 @@ const Home = () => {
     <>
       {/* {isLoading && <WindowLoadingScreen isLoading={isLoading} />} */}
       {/* <Windowloading /> */}
-      {!isLoading && (
+      {/* {!isLoading && (
         <Intro
           setIntro={intro}
           isLoginLoading={isLogin}
           LoginButtonHandler={LoginButtonHandler}
         />
-      )}
+      )} */}
       {!intro && <Main VscOpen={VscOpen} />}
       {!state.windowopen && (
         <VisualStudio
