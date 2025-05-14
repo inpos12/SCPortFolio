@@ -1,14 +1,16 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import { IconWrapper } from "./layout";
 import IconList from "@/app/components/common/icons";
 import { Style } from "../type/style";
-import { Heading1, Heading2 } from "./common/CommonStyles";
+import { BackgroundImageSrc, Heading2 } from "./common/CommonStyles";
+import { AnimatePresence, motion, useAnimation } from "motion/react";
 
 type IconType = Pick<Style, "$zindex" | "$maxWidth" | "$padding" | "$filter">;
-const Container = styled.div`
+const Container = styled(BackgroundImageSrc)`
+  position: absolute;
   width: 100%;
 `;
 
@@ -37,20 +39,41 @@ type OwnProps = {
   VscOpen: (e: React.MouseEvent<Element>) => void;
 };
 export const Main: React.FC<OwnProps> = (props) => {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    async function sequence() {
+      await controls.start({
+        x: 0,
+        rotate: 0,
+        transition: { duration: 1, ease: "easeInOut", delay: 0.3 },
+      }); // 아래로
+    }
+    sequence();
+  }, [controls]);
+
   return (
-    <>
+    <AnimatePresence>
       <Container>
         <IconRow onClick={props.VscOpen} style={{ cursor: "pointer" }}>
-          <Icon
-            $zindex="-1"
-            $maxWidth="120px"
-            alt="VSicon"
-            src={IconList.VSIcon}
-            $filter="none"
-          />
+          <motion.div
+            // initial={{ opacity: 0, scale: 0.95 }}
+            // animate={{ opacity: 1, scale: 1 }}
+            initial={{ x: 100, rotate: 360 }}
+            animate={controls}
+            // transition={{ duration: 1.2 }}
+          >
+            <Icon
+              $zindex="1"
+              $maxWidth="120px"
+              alt="VSicon"
+              src={IconList.VSIcon}
+              $filter="none"
+            />
+          </motion.div>
           <Heading2 className="mt-2">Visual Studio Code</Heading2>
         </IconRow>
       </Container>
-    </>
+    </AnimatePresence>
   );
 };

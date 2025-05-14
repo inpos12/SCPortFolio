@@ -16,17 +16,22 @@
 }
 
 body {
+  position: relative;
+  background-color: black;
   color: var(--foreground);
   min-height: 100vh;
-  background-image: url("../../public/바탕화면.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   font-family: Arial, Helvetica, sans-serif;
   overflow-y: hidden;
   user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
+}
+.test {
+  position: absolute;
+  background-image: url("../../public/바탕화면.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 /* h1 {

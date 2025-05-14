@@ -7,19 +7,35 @@ import Image from "next/image";
 import Animation from "@/app/image/LoadingAnimation.json";
 import Lottie from "lottie-react";
 import { AnimatePresence, motion } from "framer-motion";
+import BackgroundImage from "@/app/image/바탕화면.jpg";
+
 type IntroH1Type = Pick<Style, "$visible">;
 
 const IntroContainer = styled.div`
   position: absolute;
-  z-index: 1000;
   min-width: 100vw;
   min-height: 100vh;
-  backdrop-filter: blur(25px);
   display: flex;
   align-items: center;
   justify-content: center;
+  &::before {
+    content: "";
+    position: absolute;
+    filter: blur(25px);
+    min-width: 100vw;
+    min-height: 100vh;
+    background-image: url(${BackgroundImage.src});
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 export const LoadingRow = styled.div`
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -57,32 +73,31 @@ export const Intro: React.FC<Props> = ({
   isLoginLoading,
 }) => {
   return (
-    <>
-      <AnimatePresence>
-        {setIntro && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3 }}
-          >
-            <IntroContainer>
-              <LoadingRow>
-                <Image width={180} src={Test} alt="Profile" />
-                <IntroH1>이승찬</IntroH1>
-                {isLoginLoading && (
-                  <Lottie
-                    animationData={Animation}
-                    loop={true}
-                    style={{ width: "100px", height: "auto" }}
-                  />
-                )}
-                <SigninButton onClick={LoginButtonHandler}>로그인</SigninButton>
-              </LoadingRow>
-            </IntroContainer>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    <AnimatePresence>
+      {setIntro && (
+        <motion.div
+          className="test"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <IntroContainer>
+            <LoadingRow>
+              <Image width={180} src={Test} alt="Profile" />
+              <IntroH1>이승찬</IntroH1>
+              {isLoginLoading && (
+                <Lottie
+                  animationData={Animation}
+                  loop={true}
+                  style={{ width: "100px", height: "auto" }}
+                />
+              )}
+              <SigninButton onClick={LoginButtonHandler}>로그인</SigninButton>
+            </LoadingRow>
+          </IntroContainer>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };

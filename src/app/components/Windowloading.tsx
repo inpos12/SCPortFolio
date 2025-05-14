@@ -8,7 +8,6 @@ import IconList from "@/app/components/common/icons";
 import { AnimatePresence, motion } from "framer-motion";
 const LoadingContainer = styled.div`
   position: absolute;
-  z-index: 1001;
   min-width: 100vw;
   min-height: 100vh;
   background-color: black;
@@ -31,35 +30,24 @@ type Props = {
   isLoading: boolean;
 };
 
-export const WindowLoadingScreen: React.FC<Props> = ({ isLoading }) => {
+export const WindowLoadingScreen: React.FC = () => {
   return (
     <>
-      <AnimatePresence>
-        {isLoading && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <LoadingContainer>
-              <LoadingRow>
-                <Image
-                  height={100}
-                  width={100}
-                  alt="WindowLogo"
-                  src={IconList.WindowIcon}
-                />
-                <Lottie
-                  style={{ width: "100px", height: "auto" }}
-                  animationData={animation}
-                  loop={true}
-                />
-              </LoadingRow>
-            </LoadingContainer>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <LoadingContainer>
+        <LoadingRow>
+          <Image
+            height={100}
+            width={100}
+            alt="WindowLogo"
+            src={IconList.WindowIcon}
+          />
+          <Lottie
+            style={{ width: "100px", height: "auto" }}
+            animationData={animation}
+            loop={true}
+          />
+        </LoadingRow>
+      </LoadingContainer>
     </>
   );
 };

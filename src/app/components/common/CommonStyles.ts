@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { CommonStylesType } from "@/app/model/model";
-import { device } from "./MediaQuery";
+
 import { GrayColor, GrayColorType } from "@/app/styles/mixins";
+import BackgroundImage from "@/app/image/바탕화면.jpg";
 
 type RowType = Pick<CommonStylesType, "$maxWidth" | "$maxHeight">;
 type IconType = Pick<
@@ -39,6 +40,13 @@ export const Hr = styled.hr`
   text-align: center;
   height: 1px;
   margin-bottom: 20px;
+`;
+export const BackgroundImageSrc = styled.div`
+  min-height: 100vh;
+  background-image: url(${BackgroundImage.src});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 `;
 
 export const GrayText = styled.p`

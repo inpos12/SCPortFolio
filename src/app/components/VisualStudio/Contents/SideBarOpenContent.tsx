@@ -16,6 +16,7 @@ import { ContactContent } from "./Contact";
 import { AnimatedSection } from "../../common/Animatiom";
 type ContainerssType = Pick<Style, "$TabletWidth" | "$TabletWidths">;
 const Containerss = styled.div<ContainerssType>`
+  overflow-y: scroll;
   background-color: #252526;
   height: calc(100% - 41px);
   width: ${(props) => {
@@ -29,6 +30,19 @@ const Containerss = styled.div<ContainerssType>`
       return "95vw";
     }
   }};
+  &::-webkit-scrollbar {
+    width: 8px; /* 스크롤바의 너비 */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: gray; /* 스크롤바의 색상 */
+    border-radius: 10px; /* 스크롤바의 모서리 둥글게 */
+  }
+  &::-webkit-scrollbar-track-piece {
+    background-color: #3c3c3c;
+  }
+  &::-webkit-scrollbar-button {
+    background-color: #3c3c3c;
+  }
 `;
 
 export const SideBarOpenContent: React.FC<SideBarOpenContentType> = (props) => {

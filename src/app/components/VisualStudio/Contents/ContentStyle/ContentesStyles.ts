@@ -20,21 +20,7 @@ export const PreGrayText = styled.pre`
   white-space: pre-wrap;
 `;
 export const ContentRow = styled(Row)`
-  overflow-y: scroll;
   padding: 10px;
-  &::-webkit-scrollbar {
-    width: 8px; /* 스크롤바의 너비 */
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: gray; /* 스크롤바의 색상 */
-    border-radius: 10px; /* 스크롤바의 모서리 둥글게 */
-  }
-  &::-webkit-scrollbar-track-piece {
-    background-color: #3c3c3c;
-  }
-  &::-webkit-scrollbar-button {
-    background-color: #3c3c3c;
-  }
 `;
 export const SendButton = styled(BodyText).attrs({ as: "button" })`
   cursor: pointer;
