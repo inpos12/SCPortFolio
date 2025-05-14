@@ -1,12 +1,25 @@
 "use client";
 import React from "react";
 import { useEffect, useReducer, useState } from "react";
-import { Intro } from "./components/intro";
+
 import { Main } from "./components/main";
 import { VisualStudio } from "./components/VisualStudio/VisualStudio";
 import { initialState, reducer } from "./context/reducer";
 import { Layout } from "./components/layout";
-import { WindowLoadingScreen } from "./components/Windowloading";
+import dynamic from "next/dynamic";
+
+const WindowLoadingScreen = dynamic(
+  () =>
+    import("@/app/components/Windowloading").then(
+      (mob) => mob.WindowLoadingScreen
+    ),
+  { ssr: false }
+);
+
+const Intro = dynamic(
+  () => import("@/app/components/intro").then((mob) => mob.Intro),
+  { ssr: false }
+);
 
 type StateType = {
   width: boolean | null;
@@ -98,13 +111,13 @@ const Home = () => {
     <>
       {isLoading && <WindowLoadingScreen isLoading={isLoading} />}
       {/* <Windowloading /> */}
-      {/* {!isLoading && (
+      {!isLoading && (
         <Intro
           setIntro={intro}
           isLoginLoading={isLogin}
           LoginButtonHandler={LoginButtonHandler}
         />
-      )} */}
+      )}
       {!intro && <Main VscOpen={VscOpen} />}
       {!state.windowopen && (
         <VisualStudio
